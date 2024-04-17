@@ -1,0 +1,18 @@
+name: "50boxSq_light"
+
+max_xy: 32 # max_xy (input size in data loader) is linked to first_res: max_xy / first_res = 64 
+max_z: 16
+minPts: 1000 # minimum amount of points contained in a crop (each box here contains 1000)
+transform: "realRandom" # choose which transformations to apply while training
+batch_size: 64 # default 64
+
+# do not compute chamfer distance in 4d (with intensities)
+distance: xyz
+
+class_names: ["Unlabeled", "Box"]
+
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1

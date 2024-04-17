@@ -1,0 +1,22 @@
+name: "KITTI-360"
+_target_: earthparserdataset.Kitti360DataModule
+
+max_xy: 32 # max_xy (input size in data loader) is linked to first_res: max_xy / first_res = 64 
+max_z: 5
+minPts: 10000 # minimum amount of points contained in a crop
+transform: "realRandom" # choose which transformations to apply while training
+batch_size: 64 # default 64
+#pre_transform_grid_sample: 0.1 # default to 0.3
+
+n_features: 4
+
+# do not compute chamfer distance in 4d (with intensities)
+distance: xyz
+
+class_names: ["Unlabeled", "Box"]
+
+defaults:
+  - earthparserdataset
+
+learning_map:
+  1 : 1

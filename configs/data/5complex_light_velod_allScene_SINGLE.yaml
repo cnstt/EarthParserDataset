@@ -1,0 +1,38 @@
+name: "5complex_light_velodyne_bulk1000_coord"
+
+max_xy: 32 # max_xy (input size in data loader) is linked to first_res: max_xy / first_res = 64 
+max_z: 10
+lidar_center: [16,16,6]
+
+transform: "raw" # choose which transformations to apply while training
+
+grid_sampling: False # choose if apply grid sampling pre-transform
+# it seems that points in velodyne scene are already spaced more
+# than the standard grid 0.3 grid size (so this is just a sanity removal)
+
+# Seeding: for consistent MaxPoints sampling with same seed
+seeding: False
+
+N_max: 2000 #20000 # Fixes bug line 33 in chamfer.py
+# If bulk consider there is also a directory containing val data
+bulk: True
+# Only use train
+force_train: True
+# To overfit to only one scene, one scene can be repeated
+# num_repeats: 128
+batch_size: 1 # default 64
+items_per_epoch:
+  train: 1 #80
+  val: 1
+
+# do not compute chamfer distance in 4d (with intensities)
+distance: xyz
+
+class_names: ["Unlabeled", "Box"]
+
+_target_: earthparserdataset.LidarScenesDataModule
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1

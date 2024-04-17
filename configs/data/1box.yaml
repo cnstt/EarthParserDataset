@@ -1,0 +1,7 @@
+name: "1box"
+
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1

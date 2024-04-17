@@ -1,0 +1,9 @@
+name: "10box"
+
+class_names: ["Unlabeled", "Box"]
+
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1

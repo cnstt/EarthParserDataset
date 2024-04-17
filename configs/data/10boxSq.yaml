@@ -1,0 +1,16 @@
+name: "10boxSq"
+
+max_xy: 32 # max_xy (input size in data loader) is linked to first_res: max_xy / first_res = 64 
+max_z: 16
+
+# do not compute chamfer distance in 4d (with intensities)
+distance: xyz
+
+class_names: ["Unlabeled", "Box"]
+
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1
+minPts: 800 # minimum amount of points contained in a crop (each box here contains 1000)

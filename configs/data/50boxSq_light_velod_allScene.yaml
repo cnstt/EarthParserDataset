@@ -1,0 +1,28 @@
+name: "50boxSq_light_velodyne"
+
+max_xy: 136 # max_xy (input size in data loader) is linked to first_res: max_xy / first_res = 64 
+max_z: 10
+lidar_center: [64,64,6]
+
+transform: "raw" # choose which transformations to apply while training
+
+# grid_sampling: False # choose if apply grid sampling pre-transform
+# it seems that points in velodyne scene are already spaced more
+# than the standard grid 0.3 grid size (so this is just a sanity removal)
+
+N_max: 100000 # Fixes bug line 33 in chamfer.py
+batch_size: 1 # default 64
+items_per_epoch:
+  train: 50 #1
+  val: 1 #1
+
+# do not compute chamfer distance in 4d (with intensities)
+distance: xyz
+
+class_names: ["Unlabeled", "Box"]
+
+defaults: 
+  - earthparserdataset
+
+learning_map:
+  1 : 1
